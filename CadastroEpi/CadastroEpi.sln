@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroEpi.WebUI", "CadastroEpi.WebUI.csproj", "{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroEpi.Tests", "..\CadastroEpi.Tests\CadastroEpi.Tests.csproj", "{E822C165-30AE-4DF7-9DBA-A375773257C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E822C165-30AE-4DF7-9DBA-A375773257C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E822C165-30AE-4DF7-9DBA-A375773257C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E822C165-30AE-4DF7-9DBA-A375773257C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E822C165-30AE-4DF7-9DBA-A375773257C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27A18877-EDAB-4818-BCCE-23EA71960512}
+	EndGlobalSection
+EndGlobal
