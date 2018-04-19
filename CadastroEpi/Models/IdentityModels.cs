@@ -23,6 +23,7 @@ namespace CadastroEpi.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<IdentityDbContext<ApplicationUser>>(new CreateDatabaseIfNotExists<IdentityDbContext<ApplicationUser>>());
         }
 
         public static ApplicationDbContext Create()

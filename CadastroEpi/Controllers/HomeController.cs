@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,10 @@ namespace CadastroEpi.Controllers
     {
         public ActionResult Index()
         {
+            using (var ctx = new Db.Entities(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                var empresas = ctx.Empresas.Count();
+            }
             return View();
         }
 
