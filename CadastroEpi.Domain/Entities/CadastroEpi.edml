@@ -60,7 +60,7 @@
           <Property Name="EpiId" Type="int" Nullable="false" />
           <Property Name="NomEpi" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="DatInclusao" Type="datetimeoffset" Nullable="false" />
-          <Property Name="DatValidade" Type="datetime" />
+          <Property Name="DatValidade" Type="varchar" MaxLength="30" />
           <Property Name="NumCa" Type="int" Nullable="false" />
           <Property Name="NumProcesso" Type="varchar" MaxLength="25" />
           <Property Name="NomFabricante" Type="varchar" MaxLength="255" />
@@ -190,7 +190,7 @@
           <Property Name="EpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="04d15f3f-4e53-4811-a052-0ae79772a19a" />
           <Property Name="NomEpi" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="0229f479-15bb-44c0-9409-ce4f9ac184dc" />
           <Property Name="DatInclusao" Type="DateTimeOffset" Nullable="false" ed:ValidateRequired="true" ed:Guid="f9525374-000c-40b2-bba5-2152940c0a1f" />
-          <Property Name="DatValidade" Type="DateTime" ed:ValidateRequired="false" ed:Guid="d98c8457-c421-4650-a832-6b5c6a645c47" />
+          <Property Name="DatValidade" Type="String" ed:ValidateRequired="false" ed:Guid="d98c8457-c421-4650-a832-6b5c6a645c47" />
           <Property Name="NumCa" Type="Int32" Nullable="false" ed:ValidateMaxValue="99999" ed:ValidateRequired="true" ed:Guid="d30e8c8c-4586-4c1c-beca-9054c795586f" />
           <Property Name="NumProcesso" Type="String" MaxLength="25" ed:ValidateMaxLength="25" ed:ValidateRequired="false" ed:Guid="6b7db7fa-3eab-4008-9b69-04c7bb1787f2" />
           <Property Name="NomFabricante" Type="String" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bab26261-e155-4728-ade6-93dac74653d3" />
