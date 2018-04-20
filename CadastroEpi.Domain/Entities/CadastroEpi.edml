@@ -9,7 +9,7 @@
           <EntitySet Name="Empresas" EntityType="CadastroEpi.Domain.Model.Store.Empresas" store:Type="Tables" Table="Empresas" />
           <EntitySet Name="Funcaos" EntityType="CadastroEpi.Domain.Model.Store.Funcaos" store:Type="Tables" Table="Funcaos" />
           <EntitySet Name="Epis" EntityType="CadastroEpi.Domain.Model.Store.Epis" store:Type="Tables" Table="Epis" />
-          <EntitySet Name="Epis_Funcionarios" EntityType="CadastroEpi.Domain.Model.Store.Epis_Funcionarios" store:Type="Tables" Table="Epis_Funcionarios" />
+          <EntitySet Name="FuncionarioEpis" EntityType="CadastroEpi.Domain.Model.Store.FuncionarioEpis" store:Type="Tables" Table="FuncionarioEpis" />
           <AssociationSet Name="FK_Funcaos_Empresas" Association="CadastroEpi.Domain.Model.Store.FK_Funcaos_Empresas">
             <End Role="Empresas" EntitySet="Empresas" />
             <End Role="Funcaos" EntitySet="Funcaos" />
@@ -18,13 +18,13 @@
             <End Role="Funcaos" EntitySet="Funcaos" />
             <End Role="Funcionarios" EntitySet="Funcionarios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Epis_Funcionarios_Epis" Association="CadastroEpi.Domain.Model.Store.FK_Epis_Funcionarios_Epis">
-            <End Role="Epis" EntitySet="Epis" />
-            <End Role="Epis_Funcionarios" EntitySet="Epis_Funcionarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Epis_Funcionarios_Funcionarios" Association="CadastroEpi.Domain.Model.Store.FK_Epis_Funcionarios_Funcionarios">
+          <AssociationSet Name="FK_FuncionarioEpis_Funcionarios" Association="CadastroEpi.Domain.Model.Store.FK_FuncionarioEpis_Funcionarios">
             <End Role="Funcionarios" EntitySet="Funcionarios" />
-            <End Role="Epis_Funcionarios" EntitySet="Epis_Funcionarios" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FuncionarioEpis_Epis" Association="CadastroEpi.Domain.Model.Store.FK_FuncionarioEpis_Epis">
+            <End Role="Epis" EntitySet="Epis" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Funcionarios">
@@ -66,13 +66,15 @@
           <Property Name="NomFabricante" Type="varchar" MaxLength="255" />
           <Property Name="CnpjFabricante" Type="varchar" Nullable="false" MaxLength="14" />
         </EntityType>
-        <EntityType Name="Epis_Funcionarios">
+        <EntityType Name="FuncionarioEpis">
           <Key>
-            <PropertyRef Name="EpiId" />
-            <PropertyRef Name="FuncionarioId" />
+            <PropertyRef Name="FuncionarioEpiId" />
           </Key>
-          <Property Name="EpiId" Type="int" Nullable="false" />
+          <Property Name="FuncionarioEpiId" Type="int" Nullable="false" />
+          <Property Name="DatEntrega" Type="datetimeoffset" Nullable="false" />
+          <Property Name="DatTroca" Type="datetimeoffset" />
           <Property Name="FuncionarioId" Type="int" Nullable="false" />
+          <Property Name="EpiId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Funcaos_Empresas">
           <End Role="Empresas" Type="CadastroEpi.Domain.Model.Store.Empresas" Multiplicity="1" />
@@ -98,27 +100,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Epis_Funcionarios_Epis">
-          <End Role="Epis" Type="CadastroEpi.Domain.Model.Store.Epis" Multiplicity="1" />
-          <End Role="Epis_Funcionarios" Type="CadastroEpi.Domain.Model.Store.Epis_Funcionarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Epis">
-              <PropertyRef Name="EpiId" />
-            </Principal>
-            <Dependent Role="Epis_Funcionarios">
-              <PropertyRef Name="EpiId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Epis_Funcionarios_Funcionarios">
+        <Association Name="FK_FuncionarioEpis_Funcionarios">
           <End Role="Funcionarios" Type="CadastroEpi.Domain.Model.Store.Funcionarios" Multiplicity="1" />
-          <End Role="Epis_Funcionarios" Type="CadastroEpi.Domain.Model.Store.Epis_Funcionarios" Multiplicity="*" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.Store.FuncionarioEpis" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Funcionarios">
               <PropertyRef Name="FuncionarioId" />
             </Principal>
-            <Dependent Role="Epis_Funcionarios">
+            <Dependent Role="FuncionarioEpis">
               <PropertyRef Name="FuncionarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FuncionarioEpis_Epis">
+          <End Role="Epis" Type="CadastroEpi.Domain.Model.Store.Epis" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.Store.FuncionarioEpis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epis">
+              <PropertyRef Name="EpiId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="EpiId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -132,6 +134,7 @@
           <EntitySet Name="Empresas" EntityType="CadastroEpi.Domain.Model.Empresa" />
           <EntitySet Name="Funcaos" EntityType="CadastroEpi.Domain.Model.Funcao" />
           <EntitySet Name="Epis" EntityType="CadastroEpi.Domain.Model.Epi" />
+          <EntitySet Name="FuncionarioEpis" EntityType="CadastroEpi.Domain.Model.FuncionarioEpi" />
           <AssociationSet Name="Empresa_FuncaoSet" Association="CadastroEpi.Domain.Model.Empresa_Funcao">
             <End Role="Empresa" EntitySet="Empresas" />
             <End Role="Funcoes" EntitySet="Funcaos" />
@@ -140,9 +143,13 @@
             <End Role="Funcao" EntitySet="Funcaos" />
             <End Role="Funcionarios" EntitySet="Funcionarios" />
           </AssociationSet>
-          <AssociationSet Name="Epi_FuncionarioSet" Association="CadastroEpi.Domain.Model.Epi_Funcionario">
-            <End Role="Epis" EntitySet="Epis" />
-            <End Role="Funcionarios" EntitySet="Funcionarios" />
+          <AssociationSet Name="Funcionario_FuncionarioEpiSet" Association="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi">
+            <End Role="Funcionario" EntitySet="Funcionarios" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+          <AssociationSet Name="Epi_FuncionarioEpiSet" Association="CadastroEpi.Domain.Model.Epi_FuncionarioEpi">
+            <End Role="Epi" EntitySet="Epis" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Funcionario" ed:Guid="ee01ffa0-9865-4ae6-8af9-245714af77e2">
@@ -154,7 +161,7 @@
           <Property Name="Cpf" Type="String" Nullable="false" MaxLength="12" ed:ValidateMaxLength="12" ed:ValidateRequired="true" ed:Guid="1584809d-69fa-423d-af67-8ae3baf3effd" />
           <Property Name="FuncaoId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="826af9a0-28f2-451e-8110-626561f12bdb" />
           <NavigationProperty Name="Funcao" Relationship="CadastroEpi.Domain.Model.Funcao_Funcionario" FromRole="Funcionarios" ToRole="Funcao" ed:Guid="ce939eea-9da0-4296-960d-bfd598846073" />
-          <NavigationProperty Name="Epis" Relationship="CadastroEpi.Domain.Model.Epi_Funcionario" FromRole="Funcionarios" ToRole="Epis" ed:Guid="04e181cf-065c-42ee-b9ed-386d32d63a1b" />
+          <NavigationProperty Name="FuncionarioEpis" Relationship="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi" FromRole="Funcionario" ToRole="FuncionarioEpis" ed:Guid="19cb603e-2660-41d6-a06c-dd065f062eaf" />
         </EntityType>
         <EntityType Name="Empresa" ed:Guid="01b30b8b-6068-48c1-8516-46368b9f16e9">
           <Key>
@@ -188,7 +195,19 @@
           <Property Name="NumProcesso" Type="String" MaxLength="25" ed:ValidateMaxLength="25" ed:ValidateRequired="false" ed:Guid="6b7db7fa-3eab-4008-9b69-04c7bb1787f2" />
           <Property Name="NomFabricante" Type="String" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bab26261-e155-4728-ade6-93dac74653d3" />
           <Property Name="CnpjFabricante" Type="String" Nullable="false" MaxLength="14" ed:ValidateMaxLength="14" ed:ValidateRequired="true" ed:Guid="f7fb57ea-b39b-48c0-a07e-761d4c086528" />
-          <NavigationProperty Name="Funcionarios" Relationship="CadastroEpi.Domain.Model.Epi_Funcionario" FromRole="Epis" ToRole="Funcionarios" ed:Guid="39d4ba56-2f79-496f-b312-64b0eb980876" />
+          <NavigationProperty Name="FuncionarioEpis" Relationship="CadastroEpi.Domain.Model.Epi_FuncionarioEpi" FromRole="Epi" ToRole="FuncionarioEpis" ed:Guid="8c1e1ac9-0eb0-42d1-a8a1-6084ba6eb86b" />
+        </EntityType>
+        <EntityType Name="FuncionarioEpi" ed:Guid="6639db58-6b78-4afe-ae32-b69a0e40a0bd">
+          <Key>
+            <PropertyRef Name="FuncionarioEpiId" />
+          </Key>
+          <Property Name="FuncionarioEpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="1937dcfa-1d3c-4e15-9a42-b7d4a105cb42" />
+          <Property Name="DatEntrega" Type="DateTimeOffset" Nullable="false" ed:ValidateRequired="true" ed:Guid="9a4a27a6-ebde-4dce-93b7-3e193a5fca3e" />
+          <Property Name="DatTroca" Type="DateTimeOffset" ed:ValidateRequired="false" ed:Guid="80f0c3f0-533c-4ae5-98df-6fb667231cf1" />
+          <Property Name="FuncionarioId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="95810ab9-6539-4c89-b85c-61c5da6ca74b" />
+          <Property Name="EpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e41690ac-de2a-4d9c-83e5-7cabfacc829d" />
+          <NavigationProperty Name="Funcionario" Relationship="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi" FromRole="FuncionarioEpis" ToRole="Funcionario" ed:Guid="f7a80225-e24e-4dd8-a60a-8155c0facb6d" />
+          <NavigationProperty Name="Epi" Relationship="CadastroEpi.Domain.Model.Epi_FuncionarioEpi" FromRole="FuncionarioEpis" ToRole="Epi" ed:Guid="6bfa08bc-48dd-4c8d-85af-69f674a6dc1c" />
         </EntityType>
         <EnumType Name="TipoIdentificador" ed:Guid="dc7f9068-489c-447b-a2b4-2fc91f23cd71">
           <Member Name="CNPJ" ed:Guid="8d75b4d3-4556-4eb1-a572-32983b9ed402" />
@@ -218,9 +237,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Epi_Funcionario" ed:Guid="6b2c9bf9-f061-4f15-8375-7b45dd35cb48">
-          <End Role="Epis" Type="CadastroEpi.Domain.Model.Epi" Multiplicity="*" />
-          <End Role="Funcionarios" Type="CadastroEpi.Domain.Model.Funcionario" Multiplicity="*" />
+        <Association Name="Funcionario_FuncionarioEpi" ed:Guid="df9bdd34-b0f0-4cef-b86c-99fa040511e4">
+          <End Role="Funcionario" Type="CadastroEpi.Domain.Model.Funcionario" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.FuncionarioEpi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="FuncionarioId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="FuncionarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Epi_FuncionarioEpi" ed:Guid="d62f5298-49f0-4dbf-b49f-85e78b30161b">
+          <End Role="Epi" Type="CadastroEpi.Domain.Model.Epi" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.FuncionarioEpi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epi">
+              <PropertyRef Name="EpiId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="EpiId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -271,14 +310,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Epi_FuncionarioSet" TypeName="CadastroEpi.Domain.Model.Epi_Funcionario" StoreEntitySet="Epis_Funcionarios">
-            <EndProperty Name="Epis">
-              <ScalarProperty Name="EpiId" ColumnName="EpiId" />
-            </EndProperty>
-            <EndProperty Name="Funcionarios">
-              <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="FuncionarioEpis">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.FuncionarioEpi">
+              <MappingFragment StoreEntitySet="FuncionarioEpis">
+                <ScalarProperty Name="FuncionarioEpiId" ColumnName="FuncionarioEpiId" />
+                <ScalarProperty Name="DatEntrega" ColumnName="DatEntrega" />
+                <ScalarProperty Name="DatTroca" ColumnName="DatTroca" />
+                <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
+                <ScalarProperty Name="EpiId" ColumnName="EpiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

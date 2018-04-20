@@ -53,6 +53,7 @@
     <Compile Include="Entities\CadastroEpi.Epi.cs" />
     <Compile Include="Entities\CadastroEpi.Funcao.cs" />
     <Compile Include="Entities\CadastroEpi.Funcionario.cs" />
+    <Compile Include="Entities\CadastroEpi.FuncionarioEpi.cs" />
     <Compile Include="Entities\CadastroEpi.TipoIdentificador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -9,6 +9,7 @@
         <File Name="CadastroEpi.Empresa.cs" Project="CadastroEpi.Domain" ProjectFolder="Entities" />
         <File Name="CadastroEpi.Funcao.cs" Project="CadastroEpi.Domain" ProjectFolder="Entities" />
         <File Name="CadastroEpi.Epi.cs" Project="CadastroEpi.Domain" ProjectFolder="Entities" />
+        <File Name="CadastroEpi.FuncionarioEpi.cs" Project="CadastroEpi.Domain" ProjectFolder="Entities" />
         <File Name="CadastroEpi.TipoIdentificador.cs" Project="CadastroEpi.Domain" ProjectFolder="Entities" />
       </GeneratedFiles>
     </Generation>

@@ -17,17 +17,47 @@ namespace CadastroEpi.Domain.Model
 {
 
     /// <summary>
-    /// There are no comments for CadastroEpi.Domain.Model.Funcionario in the schema.
+    /// There are no comments for CadastroEpi.Domain.Model.FuncionarioEpi in the schema.
     /// </summary>
-    public partial class Funcionario    {
+    public partial class FuncionarioEpi    {
 
-        public Funcionario()
+        public FuncionarioEpi()
         {
             OnCreated();
         }
 
 
         #region Properties
+    
+        /// <summary>
+        /// There are no comments for FuncionarioEpiId in the schema.
+        /// </summary>
+        public virtual int FuncionarioEpiId
+        {
+            get;
+            set;
+        }
+
+    
+        /// <summary>
+        /// There are no comments for DatEntrega in the schema.
+        /// </summary>
+        public virtual global::System.DateTimeOffset DatEntrega
+        {
+            get;
+            set;
+        }
+
+    
+        /// <summary>
+        /// There are no comments for DatTroca in the schema.
+        /// </summary>
+        public virtual global::System.Nullable<System.DateTimeOffset> DatTroca
+        {
+            get;
+            set;
+        }
+
     
         /// <summary>
         /// There are no comments for FuncionarioId in the schema.
@@ -40,29 +70,9 @@ namespace CadastroEpi.Domain.Model
 
     
         /// <summary>
-        /// There are no comments for NomeFuncionario in the schema.
+        /// There are no comments for EpiId in the schema.
         /// </summary>
-        public virtual string NomeFuncionario
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for Cpf in the schema.
-        /// </summary>
-        public virtual string Cpf
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for FuncaoId in the schema.
-        /// </summary>
-        public virtual int FuncaoId
+        public virtual int EpiId
         {
             get;
             set;
@@ -74,18 +84,18 @@ namespace CadastroEpi.Domain.Model
         #region Navigation Properties
     
         /// <summary>
-        /// There are no comments for Funcao in the schema.
+        /// There are no comments for Funcionario in the schema.
         /// </summary>
-        public virtual Funcao Funcao
+        public virtual Funcionario Funcionario
         {
             get;
             set;
         }
     
         /// <summary>
-        /// There are no comments for FuncionarioEpis in the schema.
+        /// There are no comments for Epi in the schema.
         /// </summary>
-        public virtual ICollection<FuncionarioEpi> FuncionarioEpis
+        public virtual Epi Epi
         {
             get;
             set;
