@@ -11,7 +11,7 @@ namespace CadastroEpi.Controllers
     {
         public ActionResult Index()
         {
-            using (var ctx = new Db.Entities(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            using (var ctx = new Db.Entities())
             {
                 var empresas = ctx.Empresas.Count();
             }
